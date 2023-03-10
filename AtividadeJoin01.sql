@@ -30,7 +30,7 @@ FOREIGN KEY (classe) REFERENCES tb_classe(classe_id)
 );
 
 ALTER TABLE tb_personagens
-ADD classe INT;
+ADD classe BIGINT;
 
 ALTER TABLE tb_personagens MODIFY classe VARCHAR(200);
 
@@ -41,10 +41,10 @@ SELECT * FROM tb_classe;
 INSERT INTO tb_classe(tipo_personagens,arma,historia,dificuldade_jogo) 
 VALUES 
 ("Guerreiro","MACHADO","Os Guerreiros são a classe mais amada entre os jogadores","Hard "),
-("Arqueiro","ARCO DE LUZ","Os Guerreiros são a classe mais amada entre os jogadores","Easy"),
-("Mago","CAJADO DE FOGO","Os Guerreiros são a classe mais amada entre os jogadores","Medium"),
-("Assassino","DUPLAS ESPADAS","Os Guerreiros são a classe mais amada entre os jogadores","Easy"),
-("Clérigo","CAJADOS","são voltadas para o grupo como curas, buffs, expurgos de debuffs e ressurreições","Medium");
+("Arqueiro","ARCO DE LUZ","Os Arqueiro são a classe mais boa.","Easy"),
+("Mago","CAJADO DE FOGO","Os Mago são a classe mais amada.","Medium"),
+("Assassino","DUPLAS ESPADAS","Os Assassino são a classe mais linda.","Easy"),
+("Clérigo","CAJADOS","Clérigo são voltadas para o grupo como curas, buffs, expurgos de debuffs e ressurreições","Medium");
 
 
 INSERT INTO tb_personagens(nome,classe,cura,defesa,velocidade,ataque) 
@@ -61,13 +61,14 @@ SELECT * FROM tb_personagens;
 
 SELECT ataque FROM tb_personagens WHERE ataque > 2000;
 
-SELECT nome FROM tb_personagens WHERE nome LIKE "C%"; 
+SELECT nome FROM tb_personagens WHERE nome LIKE "%C%"; 
 
 SELECT nome,ataque FROM tb_personagens WHERE ataque BETWEEN 1000  AND  2000; 
+SELECT nome,ataque FROM tb_personagens WHERE ataque >= 1000 AND ataque <= 2000;
 
 SELECT * FROM tb_personagens INNER JOIN tb_classe ON tb_personagens.classe = tb_classe.classe_id;
 
 SELECT tb_personagens.nome,tb_personagens.ataque,tb_classe.tipo_personagens
- as classe FROM tb_personagens INNER JOIN tb_classe ON tb_personagens.classe = tb_classe.classe_id WHERE tb_classe.tipo_personagens ="Guerreiro";
+ as classe FROM tb_personagens INNER JOIN tb_classe ON tb_personagens.classe = tb_classe.classe_id WHERE tb_classe.tipo_personagens ="Clérigo";
 
 
